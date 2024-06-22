@@ -1,0 +1,1 @@
+export const HEADER_LOGO = "https://media.istockphoto.com/id/1372697005/photo/food-variety-on-table-with-empty-plate.jpg?s=1024x1024&w=is&k=20&c=SmsYLpMF5fiYYuAZKHMzQXrIaMenfGcCKA6fqbddbjI="
