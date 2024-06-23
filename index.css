@@ -37,13 +37,15 @@
 
 .card{
   border: 2px solid mediumaquamarine;
+  height: 250px;
+  width: 150px;
+  margin: 30px;
 }
 .card-container{
   display: flex;
   flex-wrap: wrap;
-  padding-top: 20px;
   justify-content: space-between;
-  gap: 20px;
+  gap:30px
 
 }
 .card-info{
@@ -55,4 +57,17 @@
 
 .filter-btn{
   margin: 10px
+}
+
+.shimmer-container{
+display: flex;
+}
+.shimmer-card{
+  height: 250px;
+  width: 150px;
+  background-color: #f0f0f0;
+  margin: 50px;
+}
+.login{
+margin-bottom: 50px;
 }

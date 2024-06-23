@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { HEADER_LOGO } from "./constants";
 
 export const Header = () => {
@@ -23,13 +24,18 @@ export const Header = () => {
   };
 
   const NavBar = () => {
+    const [login, setLogin] = useState('login')
     return (
       <div className="nav-bar">
         <ul>
           <li>HOME</li>
           <li>ABOUT US</li>
           <li>CART</li>
+        <button className="login" onClick={()=>{
+          login === 'login' ? setLogin('logout') : setLogin('login')
+        }}>{login}</button>
         </ul>
       </div>
+
     );
   };
