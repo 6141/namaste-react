@@ -53,9 +53,9 @@ export const Body = () => {
           className="filter-btn"
           onClick={() => {
             const filter = res?.filter((restaurant, index) => {
-              restaurant.info.avgRating > 4;
-              setRes(filter);
+              return  restaurant.info.avgRating > 4;
             });
+            setFilterres(filter);
           }}
         >
           {" "}
