@@ -37,9 +37,11 @@
 
 .card{
   border: 2px solid mediumaquamarine;
-  height: 250px;
-  width: 150px;
   margin: 30px;
+}
+
+.food-text{
+  padding-left: 150px;
 }
 .card-container{
   display: flex;
@@ -69,5 +71,6 @@ display: flex;
   margin: 50px;
 }
 .login{
-margin-bottom: 50px;
+margin-bottom: 30px;
+margin-right: 20px;
 }

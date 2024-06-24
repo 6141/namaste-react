@@ -1,1 +1,1 @@
-export const HEADER_LOGO = "https://media.istockphoto.com/id/1372697005/photo/food-variety-on-table-with-empty-plate.jpg?s=1024x1024&w=is&k=20&c=SmsYLpMF5fiYYuAZKHMzQXrIaMenfGcCKA6fqbddbjI="
+export const HEADER_LOGO = 'https://t3.ftcdn.net/jpg/02/41/30/72/360_F_241307210_MjjaJC3SJy2zJZ6B7bKGMRsKQbdwRSze.jpg'

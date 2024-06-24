@@ -5,7 +5,7 @@ export const Header = () => {
     return (
       <div className="header">
         <Logo />
-        <h1>ORDER YOUR FOOD NOW</h1>
+        <h1 className="food-text">FOODIES WELCOME HERE.</h1>
         <NavBar />
       </div>
     );
