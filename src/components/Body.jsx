@@ -53,7 +53,7 @@ export const Body = () => {
           className="filter-btn"
           onClick={() => {
             const filter = res?.filter((restaurant, index) => {
-              restaurant.info.name > 4;
+              restaurant.info.avgRating > 4;
               setRes(filter);
             });
           }}
@@ -72,7 +72,7 @@ export const Body = () => {
                 "https://media-assets.swiggy.com/swiggy/image/upload/" +
                 restaurant.info.cloudinaryImageId
               }
-              ratings={restaurant.info.avgRatingString}
+              ratings={restaurant.info.avgRating}
             />
           ))}
       </div>
