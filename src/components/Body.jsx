@@ -30,48 +30,38 @@ export const Body = () => {
         <input
           type="text"
           className="search-box"
+          placeholder="Search restaurants..."
           value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
+          onChange={(e) => setSearchText(e.target.value)}
         />
         <button
           className="search"
           onClick={() => {
-            const x = res?.filter((restaurant) =>
-              restaurant.info.name
-                .toLowerCase()
-                .includes(searchText.toLowerCase())
+            const filtered = res.filter((restaurant) =>
+              restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
             );
-
-            setFilterres(x)
+            setFilterres(filtered);
           }}
         >
-          search
+          Search
         </button>
         <button
           className="filter-btn"
           onClick={() => {
-            const filter = res?.filter((restaurant, index) => {
-              return  restaurant.info.avgRating > 4;
-            });
-            setFilterres(filter);
+            const filtered = res.filter((restaurant) => restaurant.info.avgRating > 4.3);
+            setFilterres(filtered);
           }}
         >
-          {" "}
-          Top Rated Restuarants
+          Top Rated Restaurants
         </button>
       </div>
       <div className="card-container">
         {filterres.length > 0 &&
-          filterres?.map((restaurant, index) => (
+          filterres.map((restaurant, index) => (
             <Card
               key={restaurant.info.id || index}
               name={restaurant.info.name}
-              imageUrl={
-                "https://media-assets.swiggy.com/swiggy/image/upload/" +
-                restaurant.info.cloudinaryImageId
-              }
+              imageUrl={`https://media-assets.swiggy.com/swiggy/image/upload/${restaurant.info.cloudinaryImageId}`}
               ratings={restaurant.info.avgRating}
             />
           ))}
