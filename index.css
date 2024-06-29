@@ -30,7 +30,7 @@
 }
 
 .nav-bar > ul > li:hover {
-  color: mediumaquamarine;
+  color: black;
   transform: scale(1.1);
 }
 
@@ -53,7 +53,7 @@
 }
 
 .search:hover {
-  background-color: aquamarine;
+  background-color: grey;
 }
 
 .heyy {
@@ -80,13 +80,13 @@
 
 .food-text {
   padding-left: 150px;
-  color: mediumaquamarine;
+  color: black;
   font-size: 2rem;
   transition: color 0.3s, transform 0.3s;
 }
 
 .food-text:hover {
-  color: aquamarine;
+  color: black;
   transform: scale(1.1);
 }
 
@@ -115,7 +115,7 @@
 }
 
 .filter-btn:hover {
-  background-color: aquamarine;
+  background-color: grey
 }
 
 .shimmer-container {
@@ -132,7 +132,6 @@
 .login {
   margin-bottom: 30px;
   margin-right: 20px;
-  background-color: mediumaquamarine;
   border: 2px solid black;
   height: 40px;
   width: 100px;
@@ -141,7 +140,7 @@
 }
 
 .login:hover {
-  background-color: aquamarine;
+  background-color: grey;
 }
 
 @media (max-width: 768px) {
@@ -167,5 +166,185 @@
 
   .card-container {
     justify-content: center;
+  }
+}
+
+.error{
+  background-color: red;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.new-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.new-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.new-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.new-header h2 {
+  font-size: 1.5rem;
+  color: #666;
+}
+
+.new-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.new-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.new-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.new-card h3 {
+  font-size: 1.25rem;
+  color: #333;
+  margin: 15px;
+}
+
+.new-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.new-card p {
+  font-size: 1rem;
+  color: #666;
+  margin: 15px;
+}
+
+@media (max-width: 768px) {
+  .new-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .new-header h1 {
+    font-size: 2rem;
+  }
+
+  .new-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .new-card-container {
+    grid-template-columns: 1fr;
+  }
+}
+/* Scoped Body Component Styles */
+.body-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.body-container .filter-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.body-container .search-input {
+  height: 40px;
+  width: 300px;
+  border: 2px solid #ddd;
+  padding: 0 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.body-container .search-button, 
+.body-container .filter-button {
+  height: 40px;
+  margin-left: 10px;
+  border: 2px solid #ddd;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 4px;
+  padding: 0 15px;
+}
+
+.body-container .search-button:hover, 
+.body-container .filter-button:hover {
+  background-color: #e0e0e0;
+}
+
+.body-container .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.body-container .card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.body-container .card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.body-container .card h3 {
+  font-size: 1.25rem;
+  color: #333;
+  margin: 15px;
+}
+
+.body-container .card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.body-container .card p {
+  font-size: 1rem;
+  color: #666;
+  margin: 15px;
+}
+
+@media (max-width: 768px) {
+  .body-container .filter-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .body-container .search-input {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+
+  .body-container .card-grid {
+    grid-template-columns: 1fr;
   }
 }

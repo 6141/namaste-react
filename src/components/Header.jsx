@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { HEADER_LOGO } from "./constants";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   return (
@@ -24,8 +25,9 @@ const NavBar = () => {
   return (
     <div className="nav-bar">
       <ul>
-        <li>HOME</li>
-        <li>ABOUT US</li>
+        <li><Link to='/'> HOME </Link></li>
+        <li><Link to='about'>ABOUT US</Link></li>
+        <li><Link to='contact'>CONTACT</Link></li>
         <li>CART</li>
         <button className="login" onClick={() => setLogin(login === 'login' ? 'logout' : 'login')}>
           {login}
