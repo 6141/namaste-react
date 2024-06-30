@@ -348,3 +348,35 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.contact-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-details, .contact-info, .contact-form {
+  margin-bottom: 20px;
+}
+
+.contact-info p, .contact-details p {
+  margin: 5px 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+
+

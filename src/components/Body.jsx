@@ -1,28 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Card } from "./Card";
 import { Shimmer } from "./shimmer";
 import { Link } from "react-router-dom";
- 
+import useFetchRestaurants from "../hooks/useResData";
+import { useOnlineStatus } from "../hooks/useOnlinestatus";
+
 export const Body = () => {
-  const [res, setRes] = useState(null);
+  const { res, filterres, setFilterres } = useFetchRestaurants();
   const [searchText, setSearchText] = useState("");
-  const [filterres, setFilterres] = useState([]);
+  const status = useOnlineStatus();
 
-  const fetchData = async () => {
-    const response = await fetch(
-      'https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.9692624&lng=79.59263039999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING'
+  if (!status)
+    return (
+      <h1>
+        Oops! Looks like you are offline.please check your internet connection
+      </h1>
     );
-    const data = await response.json();
-    return data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-  };
-
-  useEffect(() => {
-    fetchData().then((data) => {
-      setRes(data);
-      setFilterres(data);
-    });
-  }, []);
-
   return res === null ? (
     <Shimmer />
   ) : (
@@ -39,7 +32,9 @@ export const Body = () => {
           className="search-button"
           onClick={() => {
             const filtered = res.filter((restaurant) =>
-              restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
+              restaurant.info.name
+                .toLowerCase()
+                .includes(searchText.toLowerCase())
             );
             setFilterres(filtered);
           }}
@@ -49,7 +44,9 @@ export const Body = () => {
         <button
           className="filter-button"
           onClick={() => {
-            const filtered = res.filter((restaurant) => restaurant.info.avgRating > 4.3);
+            const filtered = res.filter(
+              (restaurant) => restaurant.info.avgRating > 4.3
+            );
             setFilterres(filtered);
           }}
         >
@@ -57,15 +54,18 @@ export const Body = () => {
         </button>
       </div>
       <div className="card-grid">
-        { filterres.map((restaurant, index) => (
-            <Link  key={restaurant.info.id || index} to={`restuarant/${restaurant.info.id}`}>
+        {filterres.map((restaurant, index) => (
+          <Link
+            key={restaurant.info.id || index}
+            to={`restuarant/${restaurant.info.id}`}
+          >
             <Card
               name={restaurant.info.name}
               imageUrl={`https://media-assets.swiggy.com/swiggy/image/upload/${restaurant.info.cloudinaryImageId}`}
               ratings={restaurant.info.avgRating}
             />
-            </Link>
-          ))}
+          </Link>
+        ))}
       </div>
     </div>
   );

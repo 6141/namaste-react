@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { HEADER_LOGO } from "./constants";
 import { Link } from "react-router-dom";
+import { useOnlineStatus } from "../hooks/useOnlinestatus";
 
 export const Header = () => {
   return (
@@ -22,16 +23,17 @@ const Logo = () => {
 
 const NavBar = () => {
   const [login, setLogin] = useState('login');
+  const status = useOnlineStatus()
   return (
     <div className="nav-bar">
       <ul>
+        <li>STATUS: {status ? "✅" :"🛑"}</li>
         <li><Link to='/'> HOME </Link></li>
         <li><Link to='about'>ABOUT US</Link></li>
         <li><Link to='contact'>CONTACT</Link></li>
-        <li>CART</li>
-        <button className="login" onClick={() => setLogin(login === 'login' ? 'logout' : 'login')}>
+        {/* <button className="login" onClick={() => setLogin(login === 'login' ? 'logout' : 'login')}>
           {login}
-        </button>
+        </button> */}
       </ul>
     </div>
   );
