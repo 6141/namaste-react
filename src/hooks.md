@@ -30,3 +30,7 @@ Two types of routing  we can have in web page application:
 2) Server side routing
 Server side routing --> network calls happens again get the data again and reload page
 Client side routing --> no network calls happen - app just replaces the components and get the data
+
+
+* In the useEffect() --> 
+if we return something that is similar to componentDidunMount ( when component is removed then we call this return )
