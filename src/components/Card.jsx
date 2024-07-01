@@ -9,3 +9,14 @@ export const Card = ({ name, imageUrl, ratings }) => {
     </div>
   );
 };
+
+export const PromotedCard = (Card) => {
+ return (props)=> {
+    return(
+      <div>
+        <label className="bg-black text-white">Promoted</label>
+        <Card {...props}/>
+      </div>
+    )
+ }
+}

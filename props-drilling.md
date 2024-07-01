@@ -1,0 +1,2 @@
+If i want some data in the child child components sending the data in the form of props from the parent components is called PROPS DRILLING 
+We can use react context to avoid this issue for bigger applications

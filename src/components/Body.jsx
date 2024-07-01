@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card } from "./Card";
+import { Card, PromotedCard } from "./Card";
 import { Shimmer } from "./shimmer";
 import { Link } from "react-router-dom";
 import useFetchRestaurants from "../hooks/useResData";
@@ -9,6 +9,7 @@ export const Body = () => {
   const { res, filterres, setFilterres } = useFetchRestaurants();
   const [searchText, setSearchText] = useState("");
   const status = useOnlineStatus();
+  const Hi = PromotedCard(Card)
 
   if (!status)
     return (
@@ -59,6 +60,13 @@ export const Body = () => {
             key={restaurant.info.id || index}
             to={`restaurant/${restaurant.info.id}`}
           >
+            {/* Higher order component example */}
+             {/* {
+              restaurant.info.id === '361947'? <Hi  name={restaurant.info.name}
+              imageUrl={`https://media-assets.swiggy.com/swiggy/image/upload/${restaurant.info.cloudinaryImageId}`}
+              ratings={restaurant.info.avgRating}
+              /> : <></>
+            }  */}
             <Card
               name={restaurant.info.name}
               imageUrl={`https://media-assets.swiggy.com/swiggy/image/upload/${restaurant.info.cloudinaryImageId}`}

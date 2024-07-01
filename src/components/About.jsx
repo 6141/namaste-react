@@ -2,14 +2,12 @@ import React, { Component } from "react";
 import { User } from "./User";
 
 export class About extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
   }
 
- componentDidMount(){
-    
-  }
-  
+  componentDidMount() {}
+
   render() {
     return (
       <div>

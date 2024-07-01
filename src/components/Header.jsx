@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useOnlineStatus } from "../hooks/useOnlinestatus";
 import { HEADER_LOGO } from "./constants";  // Ensure you have the correct path for HEADER_LOGO
+import { LoggedInContext } from "../../utils/context";
 
 const Logo = () => {
   return (
@@ -14,6 +15,8 @@ const Logo = () => {
 export const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const status = useOnlineStatus();
+  const { userName, isLoggedinUser} = useContext(LoggedInContext)
+  console.log(userName, isLoggedinUser, 'hiii')
 
   return (
     <header className="bg-pink-200 p-4 shadow-md">

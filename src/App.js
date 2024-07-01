@@ -6,6 +6,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Error } from "./components/Error";
 import { ResInfo } from "./components/RestuarantInfo";
 import { About } from "./components/About";
+import { LoggedInContext } from "../utils/context";
 
 const Contact = lazy(() => import('./components/Contact'));
 
@@ -14,7 +15,9 @@ const FoodApp = () => {
     <div className="food-app">
       <Header />
       <div className="pt-5">
+        <LoggedInContext.Provider value={{isLoggedInUser: false, userName: 'update the context '}}>
         <Outlet />
+        </LoggedInContext.Provider>
       </div>
     </div>
   );

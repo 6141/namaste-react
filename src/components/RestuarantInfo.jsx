@@ -1,13 +1,52 @@
 import { Shimmer } from "./shimmer";
 import { useParams } from "react-router-dom";
 import { useResMenu } from "../hooks/useResMenu";
+import { useContext, useEffect, useState } from "react";
+import { LoggedInContext } from "../../utils/context";
+import Accordion from "./Accordian";
 
-export const ResInfo = () => {
-  const { resId } = useParams();
-  const resinfo = useResMenu(resId);
+const ResInfoNew = ({ resinfo }) => {
+  const [filteredData, setFilteredData] = useState([]);
+  const [nested, setNested] = useState([]);
+  const { isLoggedInUser, userName } = useContext(LoggedInContext);
+  console.log(isLoggedInUser, userName, 'heyy');
 
-  if (resinfo === null) return <Shimmer />;
+  useEffect(() => {
+    if (resinfo) {
+      const data =
+        resinfo.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards || [];
+      const filtered = data.filter(
+        (card) =>
+          card.card?.card["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+      );
+      const z = data.filter(
+        (card) =>
+          card.card?.card["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
+      );
+      setFilteredData(filtered);
+      setNested(z);
+    }
+  }, [resinfo]);
 
+  console.log(resinfo, filteredData, "filter");
+
+  return (
+    <div className="max-w-4xl mx-auto p-4">
+      {filteredData.map((category, index) => (
+        <Accordion key={index} itemCards={category.card.card.itemCards} title={category.card.card.title} />
+      ))}
+      {nested.map((x, index) =>
+        x.card.card.categories.map((items, innerIndex) => (
+          <Accordion key={`${index}-${innerIndex}`} itemCards={items.itemCards} title={items.title}/>
+        ))
+      )}
+    </div>
+  );
+};
+
+const ResInfoOld = ({ resinfo }) => {
   return (
     <div className="max-w-7xl mx-auto p-5">
       <header className="text-center mb-5">
@@ -27,4 +66,14 @@ export const ResInfo = () => {
       </div>
     </div>
   );
+};
+
+export const ResInfo = () => {
+  const { resId } = useParams();
+  const resinfo = useResMenu(resId);
+  const randomVariant = Math.random() < 0.5; 
+
+  if (resinfo === null) return <Shimmer />;
+
+  return randomVariant ? <ResInfoNew resinfo={resinfo} /> : <ResInfoOld resinfo={resinfo} />;
 };
