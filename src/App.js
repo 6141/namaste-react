@@ -7,18 +7,19 @@ import { Error } from "./components/Error";
 import { ResInfo } from "./components/RestuarantInfo";
 import { About } from "./components/About";
 
- const Contact = lazy(() => import("./components/Contact"));
+const Contact = lazy(() => import('./components/Contact'));
 
 const FoodApp = () => {
   return (
     <div className="food-app">
       <Header />
-      <div className="heyy">
+      <div className="pt-5">
         <Outlet />
       </div>
     </div>
   );
 };
+
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -26,27 +27,28 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Body />,
+        element: <Body />
       },
       {
         path: "/about",
-        element: <About />,
+        element: <About />
       },
       {
         path: "/contact",
         element: (
-           <Suspense fallback={<h1>Loading...</h1>}>
-            <Contact/>
-           </Suspense>
-        ),
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Contact />
+          </Suspense>
+        )
       },
       {
-        path: "/restuarant/:resId",
-        element: <ResInfo />,
-      },
+        path: "/restaurant/:resId",
+        element: <ResInfo/>
+      }
     ],
-    errorElement: <Error />,
-  },
+    errorElement: <Error />
+  }
 ]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={appRouter} />);

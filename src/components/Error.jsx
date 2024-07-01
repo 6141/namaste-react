@@ -1,11 +1,14 @@
-import { useRouteError } from "react-router-dom"
+import { useRouteError } from "react-router-dom";
 
 export const Error = () => {
-    const error = useRouteError()
-    return(
-        <div>
-            <h1>Oops, something went wrong</h1>
-            <h2>{error.statusText}</h2>
-        </div>
-    )
-}
+  const err = useRouteError();
+
+  return (
+    <div className="h-screen flex items-center justify-center">
+      <h1 className="text-center">
+        Oops! Something went wrong. <br />
+        {err.status} : {err.statusText}
+      </h1>
+    </div>
+  );
+};

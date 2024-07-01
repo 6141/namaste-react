@@ -1,40 +1,45 @@
 import { useState } from "react";
-import { HEADER_LOGO } from "./constants";
 import { Link } from "react-router-dom";
 import { useOnlineStatus } from "../hooks/useOnlinestatus";
-
-export const Header = () => {
-  return (
-    <div className="header">
-      <Logo />
-      <h1 className="food-text">FOODIES WELCOME HERE.</h1>
-      <NavBar />
-    </div>
-  );
-};
+import { HEADER_LOGO } from "./constants";  // Ensure you have the correct path for HEADER_LOGO
 
 const Logo = () => {
   return (
     <div className="logo">
-      <img src={HEADER_LOGO} alt="Logo" />
+      <img src={HEADER_LOGO} alt="Logo" className="h-16 w-16" />
     </div>
   );
 };
 
-const NavBar = () => {
-  const [login, setLogin] = useState('login');
-  const status = useOnlineStatus()
+export const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const status = useOnlineStatus();
+
   return (
-    <div className="nav-bar">
-      <ul>
-        <li>STATUS: {status ? "✅" :"🛑"}</li>
-        <li><Link to='/'> HOME </Link></li>
-        <li><Link to='about'>ABOUT US</Link></li>
-        <li><Link to='contact'>CONTACT</Link></li>
-        {/* <button className="login" onClick={() => setLogin(login === 'login' ? 'logout' : 'login')}>
-          {login}
-        </button> */}
-      </ul>
-    </div>
+    <header className="bg-pink-200 p-4 shadow-md">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="flex items-center">
+          <Logo />
+          <h2 className="text-white font-bold text-2xl ml-4">
+            {status ? "Online" : "Offline"}
+          </h2>
+          <nav className="ml-4">
+            <ul className="flex space-x-4">
+              <li><Link className="text-white hover:text-gray-300" to="/">Home</Link></li>
+              <li><Link className="text-white hover:text-gray-300" to="/about">About</Link></li>
+              <li><Link className="text-white hover:text-gray-300" to="/contact">Contact</Link></li>
+              <li><Link className="text-white hover:text-gray-300" to="/cart">Cart</Link></li>
+            </ul>
+          </nav>
+        </div>
+        <div>
+          {isLoggedIn ? (
+            <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" onClick={() => setIsLoggedIn(false)}>Logout</button>
+          ) : (
+            <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" onClick={() => setIsLoggedIn(true)}>Login</button>
+          )}
+        </div>
+      </div>
+    </header>
   );
 };

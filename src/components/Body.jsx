@@ -13,23 +13,23 @@ export const Body = () => {
   if (!status)
     return (
       <h1>
-        Oops! Looks like you are offline.please check your internet connection
+        Oops! Looks like you are offline. Please check your internet connection.
       </h1>
     );
   return res === null ? (
     <Shimmer />
   ) : (
-    <div className="body-container">
-      <div className="filter-section">
+    <div className="max-w-7xl mx-auto p-5">
+      <div className="flex justify-center mb-5">
         <input
           type="text"
-          className="search-input"
+          className="h-10 w-72 border-2 border-gray-300 p-2 rounded"
           placeholder="Search restaurants..."
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
         <button
-          className="search-button"
+          className="h-10 ml-3 border-2 border-gray-300 bg-gray-100 p-2 rounded hover:bg-gray-200"
           onClick={() => {
             const filtered = res.filter((restaurant) =>
               restaurant.info.name
@@ -42,7 +42,7 @@ export const Body = () => {
           Search
         </button>
         <button
-          className="filter-button"
+          className="h-10 ml-3 border-2 border-gray-300 bg-gray-100 p-2 rounded hover:bg-gray-200"
           onClick={() => {
             const filtered = res.filter(
               (restaurant) => restaurant.info.avgRating > 4.3
@@ -53,11 +53,11 @@ export const Body = () => {
           Top Rated Restaurants
         </button>
       </div>
-      <div className="card-grid">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {filterres.map((restaurant, index) => (
           <Link
             key={restaurant.info.id || index}
-            to={`restuarant/${restaurant.info.id}`}
+            to={`restaurant/${restaurant.info.id}`}
           >
             <Card
               name={restaurant.info.name}
