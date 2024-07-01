@@ -2,14 +2,14 @@ import { Shimmer } from "./shimmer";
 import { useParams } from "react-router-dom";
 import { useResMenu } from "../hooks/useResMenu";
 import { useContext, useEffect, useState } from "react";
-import { LoggedInContext } from "../../utils/context";
 import Accordion from "./Accordian";
+import { LoggedInContext } from "../App";
 
 const ResInfoNew = ({ resinfo }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [nested, setNested] = useState([]);
-  const { isLoggedInUser, userName } = useContext(LoggedInContext);
-  console.log(isLoggedInUser, userName, 'heyy');
+  // const { isLoggedInUser, userName } = useContext(LoggedInContext);
+  // console.log(isLoggedInUser, userName, 'heyy');
 
   useEffect(() => {
     if (resinfo) {
@@ -47,6 +47,7 @@ const ResInfoNew = ({ resinfo }) => {
 };
 
 const ResInfoOld = ({ resinfo }) => {
+  const { cartCount, setCartCount} = useContext(LoggedInContext)
   return (
     <div className="max-w-7xl mx-auto p-5">
       <header className="text-center mb-5">
@@ -59,6 +60,9 @@ const ResInfoOld = ({ resinfo }) => {
             <img className="w-full h-64 object-cover" src={`https://media-assets.swiggy.com/swiggy/image/upload/${item?.card?.info?.imageId}`} alt={item.card.info.name} />
             <div className="p-5">
               <h3 className="text-xl font-semibold">{item.card.info.name} - Rs.{item.card.info.price / 100 || item.card.info.defaultPrice / 100}</h3>
+              <button className="py-2 px-3 bg-blue-500 text-white rounded hover:bg-blue-600" onClick={()=> {setCartCount(cartCount + 1)}}>
+                  Add
+                </button>
               <p className="text-gray-600">{item.card.info.description}</p>
             </div>
           </div>
