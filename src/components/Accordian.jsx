@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { LoggedInContext } from "../App";
 
 const Accordion = ({ title, itemCards }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -6,6 +7,8 @@ const Accordion = ({ title, itemCards }) => {
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
+
+  const { cartCount, setCartCount} = useContext(LoggedInContext)
 
   return (
     <div className="border-b border-gray-200 mb-10 bg-gray-100 shadow-md">
@@ -39,7 +42,7 @@ const Accordion = ({ title, itemCards }) => {
                   <p className="text-sm text-gray-600">{tab.card.info.description}</p>
                   <p className="text-sm text-gray-600">₹{(tab.card.info.price / 100).toFixed(2)}</p>
                 </div>
-                <button className="py-1 px-3 bg-blue-500 text-white rounded hover:bg-blue-600">
+                <button className="py-1 px-3 bg-blue-500 text-white rounded hover:bg-blue-600" onClick={()=> {setCartCount(cartCount + 1)}}>
                   Add
                 </button>
               </div>

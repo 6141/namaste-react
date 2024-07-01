@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { createContext, lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom";
 import { Header } from "./components/Header";
 import { Body } from "./components/Body";
@@ -6,19 +6,21 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Error } from "./components/Error";
 import { ResInfo } from "./components/RestuarantInfo";
 import { About } from "./components/About";
-import { LoggedInContext } from "../utils/context";
 
 const Contact = lazy(() => import('./components/Contact'));
 
+export const LoggedInContext = createContext(null) 
+
 const FoodApp = () => {
+  const [cartCount, setCartCount] = useState(0)
   return (
     <div className="food-app">
+       <LoggedInContext.Provider value={{cartCount,setCartCount}}>
       <Header />
       <div className="pt-5">
-        <LoggedInContext.Provider value={{isLoggedInUser: false, userName: 'update the context '}}>
         <Outlet />
-        </LoggedInContext.Provider>
       </div>
+      </LoggedInContext.Provider>
     </div>
   );
 };
