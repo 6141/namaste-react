@@ -6,7 +6,7 @@
     "react-router-dom": "^6.24.0"
   },
   "scripts": {
-    "start": "parcel src/index.html",
+    "start": "parcel index.html",
     "build": "parcel build index.html"
   },
   "devDependencies": {
