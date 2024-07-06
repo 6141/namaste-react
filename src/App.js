@@ -6,6 +6,9 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Error } from "./components/Error";
 import { ResInfo } from "./components/RestuarantInfo";
 import { About } from "./components/About";
+import { Provider } from "react-redux";
+import appStore from "../utils/app-store";
+import { Cart } from "./components/cart";
 
 const Contact = lazy(() => import('./components/Contact'));
 
@@ -14,6 +17,7 @@ export const LoggedInContext = createContext(null)
 const FoodApp = () => {
   const [cartCount, setCartCount] = useState(0)
   return (
+    <Provider store={appStore}>
     <div className="food-app">
        <LoggedInContext.Provider value={{cartCount,setCartCount}}>
       <Header />
@@ -22,6 +26,7 @@ const FoodApp = () => {
       </div>
       </LoggedInContext.Provider>
     </div>
+    </Provider>
   );
 };
 
@@ -49,6 +54,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <ResInfo/>
+      },
+      {
+        path: "/cart",
+        element: <Cart/>
       }
     ],
     errorElement: <Error />

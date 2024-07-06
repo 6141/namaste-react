@@ -4,6 +4,7 @@ import { useOnlineStatus } from "../hooks/useOnlinestatus";
 import { HEADER_LOGO } from "./constants";
 import { LoggedInContext } from "../App";
 import { FaShoppingCart } from "react-icons/fa"; // Add this line for the cart icon
+import { useSelector } from "react-redux";
 
 const Logo = () => {
   return (
@@ -18,6 +19,7 @@ export const Header = () => {
   const status = useOnlineStatus();
   // const { userName, isLoggedinUser} = useContext(LoggedInContext)
   const { cartCount } = useContext(LoggedInContext);
+  const count = useSelector((store)=>store.cart.items)
 
   return (
     <header className="bg-pink-200 p-4 shadow-md">
@@ -35,9 +37,9 @@ export const Header = () => {
               <li className="relative">
                 <Link className="text-white hover:text-gray-300 flex items-center" to="/cart">
                   <FaShoppingCart className="text-2xl" />
-                  {cartCount > 0 && (
+                  {  (
                     <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 text-white rounded-full h-4 w-4 flex items-center justify-center text-xs">
-                      {cartCount}
+                     {count.length}
                     </span>
                   )}
                 </Link>

@@ -30,7 +30,6 @@ const ResInfoNew = ({ resinfo }) => {
     }
   }, [resinfo]);
 
-  console.log(resinfo, filteredData, "filter");
 
   return (
     <div className="max-w-4xl mx-auto p-4">
@@ -75,9 +74,9 @@ const ResInfoOld = ({ resinfo }) => {
 export const ResInfo = () => {
   const { resId } = useParams();
   const resinfo = useResMenu(resId);
-  const randomVariant = Math.random() < 0.5; 
+  // const randomVariant = Math.random() < 0.5; 
 
   if (resinfo === null) return <Shimmer />;
 
-  return randomVariant ? <ResInfoNew resinfo={resinfo} /> : <ResInfoOld resinfo={resinfo} />;
+  return  <ResInfoNew resinfo={resinfo} /> 
 };

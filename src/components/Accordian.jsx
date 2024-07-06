@@ -1,13 +1,19 @@
 import React, { useContext, useState } from "react";
 import { LoggedInContext } from "../App";
+import { useDispatch } from "react-redux";
+import { add } from "../../utils/cart-slice";
 
 const Accordion = ({ title, itemCards }) => {
   const [isOpen, setIsOpen] = useState(false);
+ const dispatch = useDispatch()
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
-
+  const handleAddItem = (tab) => {
+    dispatch(add(tab))
+  }
+ 
   const { cartCount, setCartCount} = useContext(LoggedInContext)
 
   return (
@@ -42,7 +48,7 @@ const Accordion = ({ title, itemCards }) => {
                   <p className="text-sm text-gray-600">{tab.card.info.description}</p>
                   <p className="text-sm text-gray-600">₹{(tab.card.info.price / 100).toFixed(2)}</p>
                 </div>
-                <button className="py-1 px-3 bg-blue-500 text-white rounded hover:bg-blue-600" onClick={()=> {setCartCount(cartCount + 1)}}>
+                <button className="py-1 px-3 bg-blue-500 text-white rounded hover:bg-blue-600" onClick={() => handleAddItem(tab)}>
                   Add
                 </button>
               </div>
