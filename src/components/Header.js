@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useOnlineStatus } from "../hooks/useOnlinestatus";
 import { HEADER_LOGO } from "./constants";
 import { LoggedInContext } from "../App";
-import { FaShoppingCart } from "react-icons/fa"; // Add this line for the cart icon
+import { FaShoppingCart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 const Logo = () => {
